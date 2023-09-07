@@ -14,8 +14,6 @@ class LinkedList:
                 self.push(item)
 
     def push(self, value):
-        if value is None or (isinstance(value, str) and not value.strip()):
-            raise ValueError("Push needs a value")
         new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
@@ -31,7 +29,7 @@ class LinkedList:
 
     def pop(self):
         if self.head is None:
-            raise ValueError("Pop does not work on empty array or list")
+            raise ValueError("Pop does not work on an empty list")
 
         value = self.head.value
         self.head = self.head.next
@@ -48,7 +46,7 @@ class LinkedList:
 
     def remove(self, node):
         if self.head is None:
-            raise ValueError("Remove does not work on empty lists")
+            raise ValueError("Remove does not affect empty lists")
 
         if node == self.head:
             self.head = self.head.next
