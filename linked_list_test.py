@@ -1,6 +1,8 @@
 import io
 import sys
+
 import pytest
+
 from linked_list import LinkedList
 
 def test_linked_list_init():
