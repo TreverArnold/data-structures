@@ -3,6 +3,7 @@ class Node:
         self.value = value
         self.next = None
 
+
 class LinkedList:
     def __init__(self, iterable=None):
         self.head = None
@@ -13,6 +14,8 @@ class LinkedList:
                 self.push(item)
 
     def push(self, value):
+        if value is None or (isinstance(value, str) and not value.strip()):
+            raise ValueError("Push needs a value")
         new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
@@ -25,16 +28,16 @@ class LinkedList:
             elements.append(repr(current.value))
             current = current.next
         return "(" + ", ".join(elements) + ")"
-    
+
     def pop(self):
         if self.head is None:
-            raise Exception("Pop does not work on empty array or list")
-        
+            raise ValueError("Pop does not work on empty array or list")
+
         value = self.head.value
         self.head = self.head.next
         self._size -= 1
         return value
-    
+
     def search(self, value):
         current = self.head
         while current is not None:
@@ -42,11 +45,11 @@ class LinkedList:
                 return current
             current = current.next
         return None
-    
+
     def remove(self, node):
         if self.head is None:
-            raise Exception("Remove does not work on empty lists")
-        
+            raise ValueError("Remove does not work on empty lists")
+
         if node == self.head:
             self.head = self.head.next
             self._size -= 1
@@ -59,14 +62,14 @@ class LinkedList:
                 self._size -= 1
                 return
             current = current.next
-        
-        raise Exception("Node not found")
+
+        raise ValueError("Node not found")
 
     def __len__(self):
         return self.size()
 
     def __str__(self):
         return self.display()
-    
+
     def size(self):
         return self._size
