@@ -29,13 +29,16 @@ def test_stack_push_empty():
 
 def test_stack_pop():
     my_stack = Stack([1, 2, 3])
+    assert my_stack.top.value == 3
     assert my_stack.pop() == 3
     assert my_stack._size == 2
+    assert my_stack.top.value == 2
     assert my_stack.pop() == 2
     assert my_stack._size == 1
+    assert my_stack.top.value == 1
 
 def test_stack_pop_empty():
-    with pytest.raises(ValueError, match=('No value to pop')):
+    with pytest.raises(ValueError, match=('Pop does not work on an empty list')):
         my_stack = Stack()
         my_stack.pop()
 

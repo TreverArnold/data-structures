@@ -1,11 +1,9 @@
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+from linked_list import LinkedList
 
-class Stack:
+class Stack(LinkedList):
     def __init__(self, iterable=None):
         self.top = None
+        self.head = None
         self._size = 0
 
         if iterable is not None:
@@ -13,21 +11,10 @@ class Stack:
                 self.push(item)
 
     def push(self, value):
-        new_node = Node(value)
-        new_node.next = self.top
-        self.top = new_node
-        self._size += 1
+        super().push(value)
+        self.top = self.head
 
     def pop(self):
-        if self.top == None:
-            raise ValueError('No value to pop')
-        poped = self.top.value
-        self.top = self.top.next
-        self._size -= 1
-        return poped
-    
-    def size(self):
-        return self._size
-
-    def __len__(self):
-        return self.size()
+        popped = super().pop()
+        self.top = self.head
+        return popped
