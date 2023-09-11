@@ -10,8 +10,8 @@ class Stack:
     def pop(self):
         try:
             return self._storage.pop()
-        except ValueError as exception:
-            raise ValueError("Cannot pop from an empty stack") from exception
+        except ValueError:
+            raise ValueError("Cannot pop from an empty stack")
 
     def __len__(self):
-        return self._storage._size
+        return len(self._storage)
