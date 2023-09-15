@@ -23,13 +23,10 @@ class doubly_LinkedList:
         else:
             self.tail = new_node
             self.tail.prev = None
-
+            
         self.head = new_node
         self.head.prev = None
         self._size += 1
-
-        if self._size == 2:
-            self.tail.next = self.head
 
     def append(self, value):
         new_node = Node(value)
@@ -39,14 +36,6 @@ class doubly_LinkedList:
 
         if self._size == 2:
             self.tail.next = self.head
-
-    def display(self):
-        elements = []
-        current = self.head
-        while current is not None:
-            elements.append(repr(current.value))
-            current = current.next
-        return "(" + ", ".join(elements) + ")"
 
     def pop(self):
         if self.head is None:
@@ -70,20 +59,17 @@ class doubly_LinkedList:
             self.head.prev = None
         return value
 
-    def search(self, value):
-        current = self.head
-        while current is not None:
-            if current.value == value:
-                return current
-            current = current.next
-        return None
-
     def remove(self, node):
         if self.head is None:
             raise ValueError("Remove does not affect empty lists")
 
         if node == self.head:
             self.head = self.head.next
+            self._size -= 1
+            return
+        
+        if node == self.tail:
+            self.tail = self.tail.prev
             self._size -= 1
             return
 
@@ -99,9 +85,6 @@ class doubly_LinkedList:
 
     def __len__(self):
         return self.size()
-
-    def __str__(self):
-        return self.display()
 
     def size(self):
         return self._size
