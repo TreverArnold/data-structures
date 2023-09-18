@@ -207,6 +207,12 @@ def test_doubly_linked_list_remove_tail():
     assert my_list.tail.next == None
     assert my_list.head.prev == None
 
+def test_doubly_linked_list_remove_first_option():
+    my_list = DoublyLinkedList(['b','c', 'b', 'a'])
+    my_list.remove(my_list.search('b'))
+    assert my_list.head.value == 'a'
+    assert my_list.head.next.value == 'c'
+    assert my_list.head.next.next.value == 'b'
 
 def test_doubly_linked_list_remove():
     my_list = DoublyLinkedList([1, 2, 3])
@@ -245,6 +251,15 @@ def test_doubly_linked_list_remove_empty():
         my_list = DoublyLinkedList()
         my_list.remove(1)
 
+def test_doubly_linked_list_search():
+    my_list = DoublyLinkedList([1, 2, 3])
+    assert my_list.search(3) == my_list.head
+    assert my_list.search(2) == my_list.head.next
+    assert my_list.search(1) == my_list.head.next.next
+
+def test_linked_list_search_empty():
+    my_list = DoublyLinkedList([1, 2, 3])
+    assert my_list.search(4) == None
 
 def test_doubly_linked_list_len():
     my_list = DoublyLinkedList([1, 2, 3])

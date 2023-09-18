@@ -87,6 +87,15 @@ class DoublyLinkedList:
 
         raise ValueError("Node not found")
 
+
+    def search(self, value):
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return current
+            current = current.next
+        return None
+    
     def __len__(self):
         return self.size()
 
