@@ -97,7 +97,4 @@ class DoublyLinkedList:
         return None
     
     def __len__(self):
-        return self.size()
-
-    def size(self):
         return self._size
