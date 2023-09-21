@@ -10,14 +10,14 @@ class Queue:
     def dequeue(self):
             try:
                 return self.dll.shift()
-            except:
+            except ValueError:
                 raise ValueError("Dequeue does not work on an empty queue")
 
     def peek(self):
         try: 
             return self.dll.tail.prev.value
-        except:
-            raise ValueError("Peek does not work on an empty queue")
+        except AttributeError:
+            raise AttributeError("Peek does not work on an empty queue")
 
     def size(self):
         return len(self.dll)

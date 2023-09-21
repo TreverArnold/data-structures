@@ -62,7 +62,7 @@ def test_peek():
     assert my_queue.dll.head.value == 3
     assert my_queue.dll._size == 3
     my_queue = Queue()
-    with pytest.raises(ValueError, match="Peek does not work on an empty queue"):
+    with pytest.raises(AttributeError, match="Peek does not work on an empty queue"):
         my_queue.peek()
     assert my_queue.dll.tail == None
     assert my_queue.dll.head == None
