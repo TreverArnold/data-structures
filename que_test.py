@@ -5,67 +5,68 @@ from que_ import Queue
 
 def test_innit():
     my_queue = Queue([1, 2, 3])
-    assert my_queue.front.value == 1
-    assert my_queue.front.next.value == 2
-    assert my_queue.rear.value == 3
-    assert my_queue.size_count == 3
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.tail.prev.value == 2
+    assert my_queue.dll.head.value == 3
+    assert my_queue.dll._size == 3
 
 
 def test_enqueue():
     my_queue = Queue()
     my_queue.enqueue(1)
-    assert my_queue.front.value == 1
-    assert my_queue.rear.value == 1
-    assert my_queue.size_count == 1
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.head.value == 1
+    assert my_queue.dll._size == 1
     my_queue.enqueue(2)
-    assert my_queue.front.value == 1
-    assert my_queue.rear.value == 2
-    assert my_queue.size_count == 2
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.head.value == 2
+    assert my_queue.dll._size == 2
     my_queue.enqueue(3)
-    assert my_queue.front.value == 1
-    assert my_queue.front.next.value == 2
-    assert my_queue.rear.value == 3
-    assert my_queue.size_count == 3
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.tail.prev.value == 2
+    assert my_queue.dll.head.value == 3
+    assert my_queue.dll._size == 3
 
 
 def test_dequeue():
     my_queue = Queue([1, 2, 3])
-    assert my_queue.front.value == 1
-    assert my_queue.front.next.value == 2
-    assert my_queue.rear.value == 3
-    assert my_queue.size_count == 3
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.tail.prev.value == 2
+    assert my_queue.dll.head.value == 3
+    assert my_queue.dll._size == 3 == 3
     assert my_queue.dequeue() == 1
-    assert my_queue.size_count == 2
-    assert my_queue.front.value == 2
-    assert my_queue.rear.value == 3
+    assert my_queue.dll._size == 2
+    assert my_queue.dll.tail.value == 2
+    assert my_queue.dll.head.value == 3
     assert my_queue.dequeue() == 2
-    assert my_queue.size_count == 1
-    assert my_queue.front.value == 3
-    assert my_queue.rear.value == 3
+    assert my_queue.dll._size == 1
+    assert my_queue.dll.tail.value == 3
+    assert my_queue.dll.head.value == 3
     assert my_queue.dequeue() == 3
-    assert my_queue.size_count == 0
-    assert my_queue.front == None
-    assert my_queue.rear == None
-    with pytest.raises(ValueError, match="Queue is empty. Cannot dequeue."):
+    assert my_queue.dll._size == 0
+    assert my_queue.dll.tail == None
+    assert my_queue.dll.head == None
+    with pytest.raises(ValueError, match="Dequeue does not work on an empty queue"):
         my_queue.dequeue()
 
 
 def test_peek():
     my_queue = Queue([1, 2, 3])
-    assert my_queue.front.value == 1
-    assert my_queue.front.next.value == 2
-    assert my_queue.rear.value == 3
-    assert my_queue.size_count == 3
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.tail.prev.value == 2
+    assert my_queue.dll.head.value == 3
+    assert my_queue.dll._size == 3
     assert my_queue.peek() == 2
-    assert my_queue.front.value == 1
-    assert my_queue.front.next.value == 2
-    assert my_queue.rear.value == 3
-    assert my_queue.size_count == 3
+    assert my_queue.dll.tail.value == 1
+    assert my_queue.dll.tail.prev.value == 2
+    assert my_queue.dll.head.value == 3
+    assert my_queue.dll._size == 3
     my_queue = Queue()
-    assert my_queue.peek() == None
-    assert my_queue.front == None
-    assert my_queue.rear == None
-    assert my_queue.size_count == 0
+    with pytest.raises(ValueError, match="Peek does not work on an empty queue"):
+        my_queue.peek()
+    assert my_queue.dll.tail == None
+    assert my_queue.dll.head == None
+    assert my_queue.dll._size == 0
 
 
 def test_len():

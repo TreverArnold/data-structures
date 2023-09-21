@@ -1,52 +1,27 @@
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
-
+from doubly_linked_list import DoublyLinkedList
 
 class Queue:
     def __init__(self, iterable=None):
-        self.front = None
-        self.rear = None
-        self.size_count = 0
-
-        if iterable is not None:
-            for item in iterable:
-                self.enqueue(item)
+        self.dll = DoublyLinkedList(iterable)
 
     def enqueue(self, value):
-        new_node = Node(value)
-        if self.size_count == 0:
-            self.front = new_node
-            self.rear = new_node
-        else:
-            self.rear.next = new_node
-            self.rear = new_node
-        self.size_count += 1
+        self.dll.push(value)
 
-    def dequeue(self, x=None):
-        if self.size_count >= 1:
-            if self.size_count == 1:
-                value = self.front.value
-                self.front = None
-                self.rear = None
-                self.size_count -= 1
-                return value
-            value = self.front.value
-            self.front = self.front.next
-            self.size_count -= 1
-            return value
-        else:
-            raise ValueError("Queue is empty. Cannot dequeue.")
+    def dequeue(self):
+        if len(self.dll) == 0:
+            raise ValueError("Dequeue does not work on an empty queue")
+        return self.dll.shift()
 
     def peek(self):
-        if self.size_count > 1:
-            return self.front.next.value
-        else:
-            return None
-
-    def __len__(self):
-        return self.size_count
+        if len(self.dll) == 0:
+            raise ValueError("Peek does not work on an empty queue")
+        return self.dll.tail.prev.value
 
     def size(self):
-        return self.size_count
+        return len(self.dll)
+    
+    def __len__(self):
+        return len(self.dll)
+
+    def is_empty(self):
+        return len(self.dll) == 0
