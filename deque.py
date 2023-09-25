@@ -13,22 +13,22 @@ class Deque:
                 self.dll.push(item)
 
     def append(self, value):
-        self.dll.append(value)
+        self.dll.push(value)
 
     def appendleft(self, value):
-        self.dll.push(value)
+        self.dll.append(value)
 
     def peek(self):
         try:
             return self.dll.head.value
         except AttributeError:
-            raise ValueError("Nothing to peek, que is empty")
+            return None
 
     def peekleft(self):
         try:
             return self.dll.tail.value
         except AttributeError:
-            raise ValueError("Nothing to peek, que is empty")
+            return None
 
     def pop(self):
         try:
