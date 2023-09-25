@@ -46,11 +46,11 @@ def test_dequeue():
 
 def test_peek():
     my_queue = Queue([1, 2, 3, 4])
-    assert my_queue.peek() == 2
+    assert my_queue.peek() == 1
     assert len(my_queue) == 4
     my_queue = Queue()
     with pytest.raises(
-        ValueError, match="Nothing to peek, que is either 0 or 1 item long"
+        ValueError, match="Nothing to peek, que is empty"
     ):
         my_queue.peek()
     assert my_queue.dll._size == 0
