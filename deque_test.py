@@ -60,7 +60,7 @@ def test_peek_left():
     assert len(my_queue) == 4
     my_queue = Deque()
     my_queue.peek() == None
-    assert my_queue.dll._size == 0
+    assert len(my_queue.dll) == 0
 
 
 def test_peek():
@@ -69,7 +69,7 @@ def test_peek():
     assert len(my_queue) == 4
     my_queue = Deque()
     my_queue.peek() == None
-    assert my_queue.dll._size == 0
+    assert len(my_queue.dll) == 0
 
 
 def test_len():

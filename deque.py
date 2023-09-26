@@ -3,14 +3,7 @@ from doubly_linked_list import DoublyLinkedList
 
 class Deque:
     def __init__(self, iterable=None):
-        self.dll = DoublyLinkedList()
-        self.dll.head = None
-        self.dll.tail = None
-        self.dll._size = 0
-
-        if iterable is not None:
-            for item in iterable:
-                self.dll.push(item)
+        self.dll = DoublyLinkedList(iterable)
 
     def append(self, value):
         self.dll.push(value)
@@ -43,7 +36,8 @@ class Deque:
             raise ValueError("Popleft does not work on an empty queue")
 
     def size(self):
-        return self.dll._size
+        return len(self.dll)
 
     def __len__(self):
         return self.dll._size
+    
