@@ -39,5 +39,5 @@ class Deque:
         return len(self.dll)
 
     def __len__(self):
-        return self.dll._size
+        return len(self.dll)
     
