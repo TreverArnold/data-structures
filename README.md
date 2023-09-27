@@ -49,3 +49,9 @@ Holds sample code for a number of classic data structures implemented in Python.
     * peek(): returns the next value that would be returned by pop but leaves the value in the deque (returns None if the deque is empty)
     * peekleft(): returns the next value that would be returned by popleft but leaves the value in the deque (returns None if the deque is empty)
     * size(): returns the count of items in the queue (returns 0 if the queue is empty)
+
+## BinHeap:
+#### Module: [binheap.py](binheap.py)
+#### Tests: [binheap_test.py](binheap_test.py)
+    * push(val): puts a new value into the heap, maintaining the heap property.
+    * pop(): removes the “top” value in the heap, maintaining the heap property.
