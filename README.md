@@ -55,3 +55,10 @@ Holds sample code for a number of classic data structures implemented in Python.
 #### Tests: [binheap_test.py](binheap_test.py)
     * push(val): puts a new value into the heap, maintaining the heap property.
     * pop(): removes the “top” value in the heap, maintaining the heap property.
+
+## PriorityQueue:
+#### Module: [priority_queue.py](priority_queue.py)
+#### Tests: [priority_queue_test.py](priority_queue_test.py)
+    * insert(value, priority): inserts a value into the queue. Takes an optional argument for that value’s priority, set by default to whatever your lowest priority is
+    * pop(): removes the most important item from the queue and returns its value.
+    * peek(): returns the most important item without removing it from the queue.
