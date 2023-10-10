@@ -44,7 +44,7 @@ class PriorityQueue:
         if priority is None:
             priority = 0
         new_node = Node(value, priority, self._insertion_count)
-        self._insertion_count += 1  # Increment insertion order counter
+        self._insertion_count += 1
         self._storage.push(new_node)
 
     def pop(self):
