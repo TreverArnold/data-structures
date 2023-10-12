@@ -26,18 +26,20 @@ class Graph:
         self.graph[from_node].remove(to_node)
 
     def nodes(self):
-        node_res = ''
+        node_res = []
         nodes = self.graph.keys()
         for item in nodes:
-            result += item + ', '
-        return result
+            node_res.append(item)
+        return node_res
     
     def edges(self):
         edge_res = ''
-        graph = self.graph
-        for node, edge in graph:
+        for node, edge in self.graph.items():
             if edge != []:
-                edge_res += str(node) + ', ' + str(edge)
+                for i in range(0, len(edge)):
+                    edge_res += '(' + str(node) + '-' + str(edge[i]) + ')'
+            else:
+                return 'No Edges'
         return edge_res
 
     def has_node(self, node):
