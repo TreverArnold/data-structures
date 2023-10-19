@@ -38,15 +38,24 @@ class Graph:
             if edge != []:
                 for i in range(0, len(edge)):
                     edge_res += '(' + str(node) + '-' + str(edge[i]) + ')'
-            else:
-                return 'No Edges'
-        return edge_res
+        return edge_res if edge_res != '' else 'No Edges'
 
     def has_node(self, node):
         return node in self.graph
     
     def neighbours(self, node):
-        return self.graph[node]
+        res = []
+        if self.graph[node] == []:
+            return None
+        for item in self.graph.items():
+            if self.adjacent(item[0], node):
+                res += str(item[0])
+        return res
     
-    def adjacent(self, from_node, to_node):
-        return to_node in self.graph[from_node]
+    def adjacent(self, node1, node2):
+        try:
+            if node2 in self.graph[node1] or node1 in self.graph[node2]:
+                return True
+            return False
+        except KeyError:
+            return False
